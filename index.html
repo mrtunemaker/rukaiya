@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Rukaiya 💖</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      color:#fff;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255,105,180,0.45), transparent 30%),
+        radial-gradient(circle at top right, rgba(100,149,237,0.45), transparent 30%),
+        linear-gradient(135deg, #ff6fb5 0%, #ff9ad5 25%, #7ab8ff 70%, #4f86ff 100%);
+      position:relative;
+      min-height:100vh;
+    }
+
+    .floating-bg{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .float-item{
+      position:absolute;
+      top:-80px;
+      opacity:0.95;
+      animation: fallDown linear forwards;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
+      pointer-events:none;
+    }
+
+    @keyframes fallDown{
+      0%{
+        transform: translateY(-10vh) rotate(0deg) scale(0.8);
+        opacity:0;
+      }
+      10%{opacity:1;}
+      100%{
+        transform: translateY(120vh) rotate(180deg) scale(1.2);
+        opacity:0;
+      }
+    }
+
+    .burst-piece{
+      position:fixed;
+      top:50%;
+      left:50%;
+      pointer-events:none;
+      z-index:1000;
+      animation: burstMove 1.9s ease-out forwards;
+      opacity:1;
+      font-size:1.2rem;
+    }
+
+    @keyframes burstMove{
+      0%{
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity:1;
+      }
+      100%{
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(360deg) scale(1.25);
+        opacity:0;
+      }
+    }
+
+    .music-floating-btn{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:3000;
+      border:none;
+      border-radius:999px;
+      padding:14px 18px;
+      background:linear-gradient(90deg,#ff6db2,#7aaeff);
+      color:#fff;
+      font-weight:700;
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+      cursor:pointer;
+    }
+
+    .page{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:30px 16px;
+      position:relative;
+      z-index:2;
+    }
+
+    .card{
+      width:100%;
+      max-width:950px;
+      background: rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:30px;
+      padding:34px 20px;
+      text-align:center;
+      box-shadow:0 20px 50px rgba(0,0,0,0.22);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position:relative;
+      overflow:hidden;
+      animation: fadeIn 0.7s ease;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to{
+        opacity:1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      left:18px;
+      top:18px;
+      bottom:18px;
+      width:6px;
+      border-radius:999px;
+      background:linear-gradient(to bottom,#ff8ecf,#8fc3ff);
+      opacity:0.75;
+    }
+
+    .top-emojis{
+      font-size:1.35rem;
+      letter-spacing:2px;
+      margin-bottom:10px;
+      animation:pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{transform:scale(1);}
+      50%{transform:scale(1.04);}
+    }
+
+    .big-emoji{
+      font-size:4rem;
+      margin-bottom:14px;
+      animation:bounce 2.2s infinite;
+    }
+
+    @keyframes bounce{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+    }
+
+    h1{
+      font-size:clamp(2rem, 5vw, 3.7rem);
+      line-height:1.15;
+      margin-bottom:12px;
+      text-shadow:0 5px 18px rgba(0,0,0,0.18);
+    }
+
+    .sub{
+      font-size:1.06rem;
+      line-height:1.8;
+      max-width:760px;
+      margin:0 auto 16px;
+    }
+
+    .date-badge{
+      display:inline-block;
+      margin:8px 0 18px;
+      padding:10px 18px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.25);
+      font-size:1rem;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .message-box{
+      margin:18px auto;
+      max-width:760px;
+      padding:18px 16px;
+      border-radius:22px;
+      background: rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.18);
+      font-size:1.05rem;
+      line-height:1.9;
+    }
+
+    .section-title{
+      margin-top:24px;
+      margin-bottom:14px;
+      font-size:1.2rem;
+      font-weight:700;
+    }
+
+    .single-photo-wrap,
+    .double-photo-wrap{
+      max-width:780px;
+      margin:0 auto;
+    }
+
+    .photo-frame{
+      position:relative;
+      padding:10px;
+      border-radius:28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.30), rgba(255,255,255,0.08));
+      border:1px solid rgba(255,255,255,0.28);
+      box-shadow:0 12px 28px rgba(0,0,0,0.18);
+      overflow:hidden;
+    }
+
+    .photo-frame::before{
+      content:"💖";
+      position:absolute;
+      top:10px;
+      left:12px;
+      font-size:1.35rem;
+      z-index:2;
+    }
+
+    .photo-frame::after{
+      content:"🧸";
+      position:absolute;
+      bottom:10px;
+      right:12px;
+      font-size:1.35rem;
+      z-index:2;
+    }
+
+    .photo-card{
+      background: rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:22px;
+      padding:12px;
+      box-shadow:0 8px 22px rgba(0,0,0,0.14);
+    }
+
+    .photo-card img{
+      width:100%;
+      display:block;
+      border-radius:18px;
+      object-fit:cover;
+      border:3px solid rgba(255,255,255,0.35);
+      box-shadow:0 8px 24px rgba(255,120,190,0.25), 0 8px 24px rgba(90,160,255,0.25);
+    }
+
+    .single-photo-wrap .photo-card img{
+      height:430px;
+    }
+
+    .double-photo-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:22px;
+    }
+
+    .double-photo-grid .photo-card img{
+      height:340px;
+    }
+
+    .photo-caption{
+      margin-top:12px;
+      font-size:1rem;
+      font-weight:700;
+      line-height:1.6;
+    }
+
+    .sparkle-line{
+      margin-top:6px;
+      font-size:0.98rem;
+      opacity:0.95;
+    }
+
+    .music-box{
+      margin-top:24px;
+      padding:20px 16px;
+      background: rgba(255,255,255,0.14);
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,0.2);
+      max-width:760px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    .music-title{
+      font-size:1.2rem;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    .song-name{
+      font-size:1.02rem;
+      line-height:1.7;
+      margin-bottom:12px;
+    }
+
+    .btns{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 22px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.25s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,0.15);
+      text-decoration:none;
+      display:inline-block;
+      color:white;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px) scale(1.03);
+    }
+
+    .btn-pink{ background: linear-gradient(90deg, #ff5ea8, #ff8ad1); }
+    .btn-blue{ background: linear-gradient(90deg, #5da8ff, #8cc8ff); }
+    .btn-purple{ background: linear-gradient(90deg, #8a7dff, #c68cff); }
+    .btn-gift{ background: linear-gradient(90deg, #ff6db2, #7aaeff); }
+
+    .heart-nav{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      font-size:1.8rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+      animation: heartPulse 1.7s infinite;
+    }
+
+    @keyframes heartPulse{
+      0%,100%{ transform:scale(1); }
+      50%{ transform:scale(1.08); }
+    }
+
+    .gift-popup{
+      display:none;
+      margin-top:22px;
+      padding:22px 18px;
+      border-radius:24px;
+      background: rgba(255,255,255,0.16);
+      border:1px solid rgba(255,255,255,0.22);
+      max-width:760px;
+      margin-left:auto;
+      margin-right:auto;
+      box-shadow:0 12px 30px rgba(0,0,0,0.18);
+      transform:scale(0.8);
+      opacity:0;
+    }
+
+    .gift-popup.show{
+      display:block;
+      animation: giftReveal 0.7s ease forwards;
+    }
+
+    @keyframes giftReveal{
+      0%{ opacity:0; transform:scale(0.75) translateY(20px);}
+      60%{ opacity:1; transform:scale(1.06) translateY(0);}
+      100%{ opacity:1; transform:scale(1);}
+    }
+
+    .gift-bear{
+      font-size:4rem;
+      margin-bottom:12px;
+      animation:bounce 2s infinite;
+    }
+
+    .gift-title{
+      font-size:1.35rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .gift-text{
+      font-size:1.05rem;
+      line-height:1.9;
+    }
+
+    .typing-text{
+      min-height:170px;
+      white-space:pre-line;
+    }
+
+    .typing-cursor{
+      display:inline-block;
+      width:3px;
+      height:1.1em;
+      background:#fff;
+      margin-left:4px;
+      vertical-align:middle;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink{
+      50%{opacity:0;}
+    }
+
+    .big-popup{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:2000;
+      padding:20px;
+    }
+
+    .big-popup.show{
+      display:flex;
+    }
+
+    .popup-card{
+      width:100%;
+      max-width:720px;
+      background: linear-gradient(135deg, rgba(255,110,180,0.95), rgba(104,170,255,0.95));
+      border-radius:28px;
+      padding:32px 20px;
+      box-shadow:0 18px 50px rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.3);
+      text-align:center;
+      animation: popupZoom .4s ease;
+    }
+
+    @keyframes popupZoom{
+      from{ opacity:0; transform:scale(.85);}
+      to{ opacity:1; transform:scale(1);}
+    }
+
+    .popup-card h2{
+      font-size:2rem;
+      margin-bottom:12px;
+    }
+
+    .popup-card p{
+      font-size:1.08rem;
+      line-height:1.9;
+      margin-bottom:18px;
+    }
+
+    .from-line{
+      margin-top:18px;
+      font-size:1.08rem;
+      font-weight:700;
+    }
+
+    .page-indicator{
+      margin-top:18px;
+      font-size:0.95rem;
+      opacity:0.95;
+    }
+
+    @media (max-width: 700px){
+      .card{ padding:26px 14px; border-radius:24px; }
+      .single-photo-wrap .photo-card img{ height:340px; }
+      .double-photo-grid .photo-card img{ height:280px; }
+      .btn{ width:100%; }
+      .heart-nav{ width:64px; height:64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-bg" id="floatingBg"></div>
+
+  <button class="music-floating-btn" id="musicBtn">🎵 Music</button>
+
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8f7d4f0f5.mp3?filename=sweet-love-ambient-11027.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- PAGE 1 -->
+  <section class="page" id="page1">
+    <div class="card">
+      <div class="top-emojis">💖 ❤️ 🎊 🎉 🧸 🩷 ⭐ 💥 ✨ 🌟</div>
+      <div class="big-emoji">🎂💖🎉</div>
+
+      <h1>Happy Birthday Rukaiya 💖</h1>
+      <p class="sub">
+        A little birthday page filled with warm wishes only for you ❤️🎂🩷
+      </p>
+
+      <div class="date-badge">🎂 Birthday: 21 June 💖</div>
+
+      <div class="message-box">
+        💌 <b>Birthday Wish</b> 💌 <br><br>
+        Happy Birthday Rukaiya 💖🎂🎉  
+        On your special day, I want your heart to feel light, peaceful and full of happiness 🩷🧸  
+        May your birthday be filled with beautiful moments, laughter, love and unforgettable memories ❤️✨
+      </div>
+
+      <div class="section-title">📸 A Beautiful Picture of You 💖</div>
+      <div class="single-photo-wrap">
+        <div class="photo-frame">
+          <div class="photo-card">
+            <img src="1000041183.jpg" alt="Rukaiya Photo 1">
+            <div class="photo-caption">My beautiful girl 💖🧸</div>
+            <div class="sparkle-line">🩷✨ Sweet smile, soft heart, beautiful soul ✨🩷</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="music-box">
+        <div class="music-title">🎂 Birthday Song For You</div>
+        <div class="song-name">Tap below to open your birthday song 💖🎉🧸</div>
+        <a class="btn btn-blue" href="https://youtu.be/ygWzXZDn6uA?si=X-n_YadM9sWaGA5y" target="_blank">
+          Play Birthday Song 🎂🎶
+        </a>
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-gift" id="giftBtn">Tap to Open Gift 🎁💖</button>
+        <button class="btn btn-pink heart-nav" onclick="goToPage(2)">💖</button>
+      </div>
+
+      <div class="gift-popup" id="giftPopup">
+        <div class="gift-bear">🧸🎁💖</div>
+        <div class="gift-title">A Little Gift For You, Rukaiya 🩷</div>
+        <div class="gift-text">
+          Happy Birthday my dear 💖🧸<br><br>
+          My gift for you is this little website full of love, smiles and memories ❤️🎂🎉  
+          I hope your <b>21 June</b> becomes one of the happiest days of your life 🩷✨
+        </div>
+      </div>
+
+      <div class="page-indicator">Page 1 of 3 💖</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page" id="page2">
+    <div class="card">
+      <div class="top-emojis">💖 🩷 🎊 🎉 🧸 ❤️ ⭐ 💥 ✨ 🌟</div>
+      <div class="big-emoji">🌸💖🎂</div>
+
+      <h1>For Your Happiness & Future 💖</h1>
+      <p class="sub">
+        This page is for your happiness, your future and all the beautiful things I wish for you 🩷✨
+      </p>
+
+      <div class="message-box">
+        💌 <b>Your happiness, welfare & future</b> 💌 <br><br>
+        On your birthday, I pray that your future becomes bright, peaceful and full of success 💖  
+        May Allah keep you safe, healthy and smiling always 🩷  
+        May your life be filled with respect, happiness, good health, sweet memories and beautiful achievements 🎉🌸❤️  
+        I hope every year brings you more peace, more love, more confidence and more reasons to smile 🧸✨
+      </div>
+
+      <div class="section-title">📸 Another Lovely Picture 💖</div>
+      <div class="single-photo-wrap">
+        <div class="photo-frame">
+          <div class="photo-card">
+            <img src="1000041182.jpg" alt="Rukaiya Photo 2">
+            <div class="photo-caption">The prettiest smile ❤️🎉</div>
+            <div class="sparkle-line">💖🎀 Looking cute as always 🎀💖</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-blue heart-nav" onclick="goToPage(1)">💙</button>
+        <button class="btn btn-pink heart-nav" onclick="goToPage(3)">💖</button>
+      </div>
+
+      <div class="page-indicator">Page 2 of 3 💖</div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section class="page" id="page3">
+    <div class="card">
+      <div class="top-emojis">💖 ❤️ 🩷 🎊 🎉 🧸 ⭐ 💥 ✨ 🌟</div>
+      <div class="big-emoji">💖🧸❤️</div>
+
+      <h1>For My Love, Rukaiya 💖</h1>
+      <p class="sub">
+        This last page is from my heart — for love, feelings, memories and all the beautiful things I want to say to you ❤️🩷
+      </p>
+
+      <div class="message-box">
+        <div style="font-weight:700; margin-bottom:10px;">💌 My love for you 💌</div>
+        <div id="loveTyping" class="typing-text"></div>
+        <span id="typingCursor" class="typing-cursor"></span>
+      </div>
+
+      <div class="music-box">
+        <div class="music-title">❤️ Love Song</div>
+        <div class="song-name"><b>Raabta</b> — because you feel special to me 💖🎶</div>
+        <a class="btn btn-purple" href="https://youtu.be/zlt38OOqwDc?si=szXGI3R2F88FB68b" target="_blank">
+          Play Raabta ❤️
+        </a>
+      </div>
+
+      <div class="section-title">🖼️ Sweet Memory Frames 💖</div>
+      <div class="double-photo-wrap">
+        <div class="double-photo-grid">
+          <div class="photo-frame">
+            <div class="photo-card">
+              <img src="1000041183.jpg" alt="Rukaiya Photo 1">
+              <div class="photo-caption">My beautiful girl 💖</div>
+              <div class="sparkle-line">🩷 You look so lovely 🩷</div>
+            </div>
+          </div>
+
+          <div class="photo-frame">
+            <div class="photo-card">
+              <img src="1000041182.jpg" alt="Rukaiya Photo 2">
+              <div class="photo-caption">My favorite smile ❤️</div>
+              <div class="sparkle-line">🎀 Pretty as always 🎀</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-blue heart-nav" onclick="goToPage(2)">💙</button>
+        <button class="btn btn-pink" onclick="openFinalPopup()">Open Final Romantic Message 💖</button>
+      </div>
+
+      <div class="from-line">From Shahil 💖</div>
+      <div class="page-indicator">Page 3 of 3 💖</div>
+    </div>
+  </section>
+
+  <!-- FINAL POPUP -->
+  <div class="big-popup" id="finalPopup">
+    <div class="popup-card">
+      <h2>💖 For Rukaiya 💖</h2>
+      <p>
+        Happy Birthday my love 🎂🩷❤️<br><br>
+        I made this little birthday website just for you, because you are truly special to me 💖  
+        I hope your 21 June is filled with smiles, peace, warmth and all the happiness you deserve 🎉🌸🧸  
+        Thank you for being so precious. I love you my dear 💞
+      </p>
+      <button class="btn btn-blue" onclick="closeFinalPopup()">Close 💙</button>
+      <div class="from-line">From Shahil 💖</div>
+    </div>
+  </div>
+
+  <script>
+    const pageIds = ["page1", "page2", "page3"];
+    let loveTyped = false;
+
+    function goToPage(pageNumber){
+      const target = document.getElementById("page" + pageNumber);
+      if(!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      createBurst();
+      if(pageNumber === 3 && !loveTyped){
+        loveTyped = true;
+        setTimeout(typeLoveMessage, 500);
+      }
+    }
+
+    // Gift popup
+    const giftBtn = document.getElementById("giftBtn");
+    const giftPopup = document.getElementById("giftPopup");
+
+    giftBtn.addEventListener("click", () => {
+      giftPopup.classList.remove("show");
+      void giftPopup.offsetWidth;
+      giftPopup.classList.add("show");
+      createBurst();
+    });
+
+    // Final popup
+    function openFinalPopup(){
+      document.getElementById("finalPopup").classList.add("show");
+      createBurst();
+    }
+
+    function closeFinalPopup(){
+      document.getElementById("finalPopup").classList.remove("show");
+    }
+
+    // typing love message
+    const loveText = `I love you my dear 💖❤️
+You are one of the sweetest and most beautiful parts of my life 🩷
+Your smile makes my day better, your presence feels special, and your happiness matters to me more than you know 🧸✨
+On your birthday, I just want to remind you that you are precious, loved and deeply cared for 💞
+I pray that your life stays full of peace, joy, confidence, warmth and endless reasons to smile 🎊🎉🌸
+Happy Birthday once again, my love 💖🎂`;
+
+    function typeLoveMessage(){
+      const target = document.getElementById("loveTyping");
+      const cursor = document.getElementById("typingCursor");
+      if(target.dataset.done === "1") return;
+
+      let i = 0;
+      function type(){
+        if(i < loveText.length){
+          target.textContent += loveText.charAt(i);
+          i++;
+          setTimeout(type, 32);
+        }else{
+          target.dataset.done = "1";
+          cursor.style.display = "none";
+        }
+      }
+      type();
+    }
+
+    // Falling animation items
+    const floatingBg = document.getElementById("floatingBg");
+    const fallingItems = ["⭐","💥","✨","🌟","💖","🩷","🎉"];
+
+    function createFloatItem(){
+      const item = document.createElement("div");
+      item.className = "float-item";
+      item.innerText = fallingItems[Math.floor(Math.random() * fallingItems.length)];
+      item.style.left = Math.random() * 100 + "vw";
+      item.style.fontSize = (18 + Math.random() * 28) + "px";
+      item.style.animationDuration = (5 + Math.random() * 6) + "s";
+      floatingB
